@@ -5,83 +5,12 @@
 </head>
 
 <body>
-    <h1>Selecione as arestas na ordem:</h1><br>
+    <h1>Home</h1><br>
     <p></p>
-    <form id="gerarMST" method="POST" action="/resultado">
-        <section class="linhas">
 
-            <div class="line1 AB"  data-weight="5" data-name="AB">5
-                <button hidden type="input" value='5' id="AB" name="AB">
-            </div>
-
-            <div class="line1 AC"  data-weight="6" data-name="AC">6
-                <button hidden type="input" value='6' id="AC" name="AC"></button>
-            </div>
-
-            <div class="line1 DB"  data-weight="3" data-name="BD">3
-                <button hidden type="input" value='3' id="BD" name="BD">
-                </button>
-            </div>
-            <div class="line1 ED"  data-weight="2" data-name="DE">2
-
-                <button hidden type="input" value='2' id="DE" name="DE">
-                </button>
-            </div>
-
-            <div class="line1 EC"  data-weight="1" data-name="EC">1
-                <button hidden type="input" value='1' id="EC" name="EC">
-                </button>
-            </div>
-
-            <div class="line2 DA"  data-weight="9" data-name="DA">9
-                <button hidden type="input" value='9' id="DA" name="DA">
-                </button>
-            </div>
-
-            <div class="line2 EA"  data-weight="10" data-name="EA">10
-                <button hidden type="input" value='10' id="EA" name="EA">
-                </button>
-            </div>
-        </section>
-
-        <button type="submit" onclick="sendSelectedEdges();">
-            Achar o tesouro!
-        </button>
-    </form>
-    <section class="circulos">
-        <div class="circle" style="left: 704px; top: 50px;">A</div>
-        <div class="circle" style="left: 566px; top: 180px;">B</div>
-        <div class="circle" style="left: 842px; top: 180px;">C</div>
-        <div class="circle" style="left: 625px; top: 350px;">D</div>
-        <div class="circle" style="left: 785px; top: 350px;">E</div>
-    </section>
 
 </body>
     <script>
-        const edges = document.querySelectorAll('.line1, .line2'); // Seleciona todas as divs de aresta da classe line1
 
-        const selectedEdges = []; // Array para armazenar as arestas selecionadas
-
-        edges.forEach(edge => {
-            edge.addEventListener('click', () => {
-                const weight = edge.getAttribute('data-weight'); // Obtém o peso da aresta
-                const name = edge.getAttribute('data-name'); // Obtém o nome da aresta
-
-                selectedEdges.push({ name, weight }); // Adiciona a aresta selecionada ao array
-
-                edge.style.backgroundColor = 'red'; // Altera a cor da aresta para indicar seleção (opcional)
-            });
-        });
-
-        // Função para enviar as arestas selecionadas para a página de resultado
-        function sendSelectedEdges() {
-            const form = document.getElementById('gerarMST');
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'selectedEdges';
-            input.value = JSON.stringify(selectedEdges);
-            form.appendChild(input);
-            form.submit();
-        }
     </script>
 </html>
