@@ -1,0 +1,79 @@
+body{
+    background-image: url('assets/wooden-floor-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+h1{
+    color: rgb(158, 0, 0);
+}
+
+.obutton{
+    position: absolute;
+    left: 43.5%;
+    top: 65%;
+    background-color: #6d0b00;
+    width: 150px;
+    height: 80px;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+button:hover{
+    border: 5px solid blue;
+}
+.regras{
+    display: flex;
+    margin-bottom: 20%;
+}
+.circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #db3434;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.circulos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.line1 {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 40px;
+    color: rgb(65, 110, 223);
+    width: 5px;
+    height: 150px;
+    background-color: #6d0b00;
+    position: absolute;
+}
+
+.line2 {
+    width: 5px;
+    height: 300px;
+    background-color: #6d0b00;
+    position: absolute;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 40px;
+    color: rgb(65, 110, 223);
+
+}
+
+.line1:hover, .line2:hover{
+    background-image: blue;
+    border: 5px solid blue;
+}
+
+.line:hover{
+    border: red 10px solid;
+}

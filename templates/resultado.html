@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <h1>Caminho escolhido:</h1>
+
+    <h2>Arestas da MST:</h2>
+    <ul>
+        {% for edge in mst_edges %}
+            <li>{{ edge.name }} (Peso: {{ edge.weight }})</li>
+        {% endfor %}
+    </ul>
+
+    <section class="circulos">
+        <div class="circle" style="left: 704px; top: 50px;">A</div>
+        <div class="circle" style="left: 566px; top: 180px;">B</div>
+        <div class="circle" style="left: 842px; top: 180px;">C</div>
+        <div class="circle" style="left: 625px; top: 350px;">D</div>
+        <div class="circle" style="left: 785px; top: 350px;">E</div>
+    </section>
+
+</body>
+<script>
+    // Use mst_edges diretamente para criar conteúdo HTML
+    let htmlString = "<h2>Arestas da MST:</h2><ul>";
+    mst_edges.forEach(edge => {
+        htmlString += `<li>${edge.name} (Peso: ${edge.weight})</li>`;
+    });
+    htmlString += "</ul>";
+    console.log(mst_edges);
+    console.log(edge.name);
+
+    // Insira a string HTML no elemento resultadoArestas
+    document.getElementById("resultadoArestas").innerHTML = htmlString;
+</script>
+
+</html>
