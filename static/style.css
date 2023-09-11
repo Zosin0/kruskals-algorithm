@@ -44,6 +44,15 @@ button:hover{
     justify-content: center;
 }
 
+.AB{left: 656px; top: 64px; transform: rotate(44deg);}
+.AC{left: 798px; top: 68px; transform: rotate(316deg);}
+.DB{left: 616px; top: 213px; transform: rotate(341deg);}
+.ED{left: 731px; top: 298px; transform: rotate(90deg);}
+.EC{left: 841px; top: 211px; transform: rotate(19deg);}
+.DA{left: 683px; top: 84px; transform: rotate(13deg);}
+.EA{left: 766px; top: 63px; transform: rotate(347deg);}
+
+
 .line1 {
     display: flex;
     justify-content: left;
