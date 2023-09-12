@@ -5,9 +5,15 @@ body{
     background-position: center;
 }
 h1{
-    color: rgb(158, 0, 0);
+    color: rgb(182, 0, 0);
 }
-
+.point{
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+}
 .obutton{
     position: absolute;
     left: 43.5%;
@@ -79,7 +85,6 @@ button:hover{
 }
 
 .line1:hover, .line2:hover{
-    background-image: blue;
     border: 5px solid blue;
 }
 
@@ -87,7 +92,17 @@ button:hover{
     border: red 10px solid;
 }
 
+.passo1, .passo2, .passo3, .passo4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 main{
-
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.regras{
+    display: flex;
 }

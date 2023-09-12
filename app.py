@@ -5,13 +5,41 @@ import json
 app = Flask(__name__)
 
 
-@app.route('//')
+@app.route('/')
 def home():
     return render_template('index.html')
 
 @app.route('/jogo')
 def index():
     return render_template('jogo.html')
+
+@app.route('/passo1')
+def passo1():
+    return render_template('passo1.html')
+
+@app.route('/passo2', methods=['POST'])
+def passo2():
+    global selected_points
+    points_data = request.form.get('points')
+
+    selected_points = json.loads(points_data)
+    print(selected_points)
+
+
+    return render_template('passo2.html', pontos=selected_points)
+
+@app.route('/passo3')
+def passo3():
+    return render_template('passo3.html')
+
+@app.route('/passo4')
+def passo4():
+    arestas_data = request.form.get('arestas')
+    arestas = json.loads(arestas_data)
+    print(arestas)
+
+    return render_template('passo4.html', arestas=arestas)
+
 
 @app.route('/resultado', methods=['POST'])
 def resultado():

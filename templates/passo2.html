@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Passo 2</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main>
+    <div class="passo2">
+         <div id="map" style="width: 500px; height: 500px; background-color: #eee; position: relative;">
+             <img src="/static/assets/mapaa.png"></div>
+        {% for ponto in pontos %}
+            <div class="point" style="left:{{ ponto.x }}px; top:{{ ponto.y }}px;"></div>
+        {% endfor %}
+
+        <a href="/passo3">Continuar para o passo 3</a>
+    </div>
+</main>
+
+</body>
+</html>

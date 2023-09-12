@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Passo-a-Passo</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main>
+    <div class="passo1">
+        <div id="map" style="width: 500px; height: 500px; background-color: #eee;">
+            <img src="/static/assets/mapa.png">
+        </div>
+        <form id="points-form" action="/passo2" method="POST">
+            <input type="hidden" id="points-data" name="points" value="">
+            <input type="submit" value="Selecionar pontos">
+        </form>
+    </div>
+</main>
+<script>
+    var selectedPoints = [];
+    var map = document.getElementById('map');
+
+    map.addEventListener('click', function(event) {
+        var x = event.clientX - 20;
+        var y = event.clientY - 20;
+
+        selectedPoints.push({ x: x, y: y });
+
+        document.getElementById('points-data').value = JSON.stringify(selectedPoints);
+
+        var pointDiv = document.createElement('div');
+        pointDiv.className = 'point';
+        pointDiv.style.left = x + 'px';
+        pointDiv.style.top = y + 'px';
+
+        map.appendChild(pointDiv);
+    });
+</script>
+
+<style>
+    .point {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+    }
+</style>
+
+</body>
+</html>
