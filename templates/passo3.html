@@ -8,42 +8,13 @@
 <body>
 <main>
     <div class="passo3">
-        <div id="map" style="width: 500px; height: 500px; background-color: #eee; position: relative;">
-            <img src="/static/assets/mapaa.png">
-        </div>
-        {% for ponto in pontos %}
-            <div class="point" style="left:{{ ponto.x }}px; top:{{ ponto.y }}px;"></div>
-        {% endfor %}
-
-        <button id="finalizar" onclick="finalizarCriacaoArestas()">Finalizar</button>
-
-        <form id="arestas-form" action="/passo4" method="POST">
-            <input type="hidden" id="arestas-data" name="arestas" value="">
-            <input type="submit" value="Salvar Arestas">
-        </form>
+        <h3>Distâncias selecionadas (km):</h3>
+        <ul>
+            {% for distancia in distancias %}
+                <li>{{ distancia }} km</li>
+            {% endfor %}
+        </ul>
     </div>
-
-    <script>
-        var arestas = [];
-        var map = document.getElementById('map');
-
-        // Função para registrar a criação de arestas
-        function registrarAresta(origem, destino) {
-            arestas.push({ origem: origem, destino: destino });
-
-            // Atualizar o campo de dados ocultos
-            document.getElementById('arestas-data').value = JSON.stringify(arestas);
-        }
-
-        // Função para finalizar a criação de arestas
-        function finalizarCriacaoArestas() {
-            alert('Criação de arestas finalizada!');
-        }
-
-        // Adicione aqui o código para desenhar as arestas ao clicar nos pontos
-        // Você pode usar JavaScript para permitir ao usuário selecionar os pontos de origem e destino
-        // e chamar a função registrarAresta() para adicionar a aresta à lista de arestas.
-    </script>
 </main>
 </body>
 </html>

@@ -23,14 +23,16 @@ def passo2():
     points_data = request.form.get('points')
 
     selected_points = json.loads(points_data)
-    print(selected_points)
-
 
     return render_template('passo2.html', pontos=selected_points)
 
-@app.route('/passo3')
+@app.route('/passo3', methods=['POST'])
 def passo3():
-    return render_template('passo3.html')
+    distancias = request.form.getlist('distancias[]')
+
+    # Valide as distâncias conforme necessário antes de prosseguir.
+
+    return render_template('passo3.html', distancias=distancias)
 
 @app.route('/passo4')
 def passo4():

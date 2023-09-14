@@ -2,28 +2,31 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Passo-a-Passo</title>
+    <title>Etapa 1</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <main>
     <div class="passo1">
-        <div id="map" style="width: 500px; height: 500px; background-color: #eee;">
-            <img src="/static/assets/mapa.png">
+        <h3>Selecione as cidades disponíveis que Kruskal deixou em seu mapa, eles representaram nossos nós para desvendar o enigma </h2>
+        <div id="map" style="border: solid 10px brown;">
+            <img style="width: 450px; height: 450px;" src="/static/assets/mapa.png">
         </div>
         <form id="points-form" action="/passo2" method="POST">
             <input type="hidden" id="points-data" name="points" value="">
-            <input type="submit" value="Selecionar pontos">
+            <input class="sel-points" 
+            type="submit" value="Selecionar pontos">
         </form>
     </div>
+
 </main>
 <script>
     var selectedPoints = [];
     var map = document.getElementById('map');
 
     map.addEventListener('click', function(event) {
-        var x = event.clientX - 20;
-        var y = event.clientY - 20;
+        var x = event.clientX -10;
+        var y = event.clientY - 10;
 
         selectedPoints.push({ x: x, y: y });
 
@@ -40,8 +43,8 @@
 
 <style>
     .point {
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
         background-color: red;
         border-radius: 50%;
         position: absolute;
