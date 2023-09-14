@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Etapa 1</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
-<main>
-    <div class="passo1">
-        <h3>Selecione as cidades disponíveis que Kruskal deixou em seu mapa, eles representaram nossos nós para desvendar o enigma </h2>
-        <div id="map" style="border: solid 10px brown;">
-            <img style="width: 450px; height: 450px;" src="/static/assets/mapa.png">
+    <main>
+        <div class="passo1">
+            <h3>Selecione as cidades disponíveis que Kruskal deixou em seu mapa, eles representaram nossos nós para
+                desvendar o enigma </h2>
+                <div id="map" style="border: solid 10px brown;">
+                    <img style="width: 450px; height: 450px;" src="/static/assets/mapa.png">
+                </div>
+                <form id="points-form" action="/passo2" method="POST">
+                    <input type="hidden" id="points-data" name="points" value="">
+                    <input class="sel-points" type="submit" value="Selecionar pontos">
+                </form>
         </div>
-        <form id="points-form" action="/passo2" method="POST">
-            <input type="hidden" id="points-data" name="points" value="">
-            <input class="sel-points" 
-            type="submit" value="Selecionar pontos">
-        </form>
-    </div>
 
-</main>
-<script>
-    var selectedPoints = [];
-    var map = document.getElementById('map');
+    </main>
+    <script>
+        var selectedPoints = [];
+        var map = document.getElementById('map');
 
-    map.addEventListener('click', function(event) {
-        var x = event.clientX -10;
-        var y = event.clientY - 10;
+        map.addEventListener('click', function (event) {
+            var x = event.clientX - 10;
+            var y = event.clientY - 10;
 
-        selectedPoints.push({ x: x, y: y });
+            selectedPoints.push({ x: x, y: y });
 
-        document.getElementById('points-data').value = JSON.stringify(selectedPoints);
+            document.getElementById('points-data').value = JSON.stringify(selectedPoints);
 
-        var pointDiv = document.createElement('div');
-        pointDiv.className = 'point';
-        pointDiv.style.left = x + 'px';
-        pointDiv.style.top = y + 'px';
+            var pointDiv = document.createElement('div');
+            pointDiv.className = 'point';
+            pointDiv.style.left = x + 'px';
+            pointDiv.style.top = y + 'px';
 
-        map.appendChild(pointDiv);
-    });
-</script>
+            map.appendChild(pointDiv);
+        });
+    </script>
 
-<style>
-    .point {
-        width: 30px;
-        height: 30px;
-        background-color: red;
-        border-radius: 50%;
-        position: absolute;
-    }
-</style>
+    <style>
+        .point {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
 
 </body>
+
 </html>
