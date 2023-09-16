@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
-<body>
+<body class="body1">
     <main>
         <div class="passo1">
-            <h3>Selecione as cidades disponíveis que Kruskal deixou em seu mapa, eles representaram nossos nós para
-                desvendar o enigma </h2>
+            <h2>Vamos fazer nosso mapa (Grafo): <br>Selecione os pontos circulados no mapa (nós): </h2>
                 <div id="map" style="border: solid 10px brown;">
                     <img style="width: 450px; height: 450px;" src="/static/assets/mapa.png">
                 </div>
@@ -25,10 +24,11 @@
     <script>
         var selectedPoints = [];
         var map = document.getElementById('map');
+        var cont = 0;
 
         map.addEventListener('click', function (event) {
-            var x = event.clientX - 10;
-            var y = event.clientY - 10;
+            var x = event.clientX - 15;
+            var y = event.clientY - 15;
 
             selectedPoints.push({ x: x, y: y });
 
@@ -38,20 +38,11 @@
             pointDiv.className = 'point';
             pointDiv.style.left = x + 'px';
             pointDiv.style.top = y + 'px';
-
+            //pointDiv.textContent = str(cont+=1);
             map.appendChild(pointDiv);
         });
     </script>
 
-    <style>
-        .point {
-            width: 30px;
-            height: 30px;
-            background-color: red;
-            border-radius: 50%;
-            position: absolute;
-        }
-    </style>
 
 </body>
 

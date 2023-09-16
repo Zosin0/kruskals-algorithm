@@ -40,14 +40,17 @@ def passo3():
     arestas = json.loads(arestas_data)
     selected_points = cache.get('selected_points')
 
+    global selected_edges
+    arestas_s = json.loads(arestas_data)
+    cache.set('arestas_s', arestas_s)
+
     def calcular_distancia(ponto1, ponto2):
-        diff_x = ponto2['x'] - ponto1['x']
-        diff_y = ponto2['y'] - ponto1['y']
+        diff_x = (ponto2['x']-2) - (ponto1['x']-2)
+        diff_y = (ponto2['y']-2) - (ponto1['y']-2)
         
         distancia = math.sqrt(diff_x ** 2 + diff_y ** 2)
         
         return distancia
-
 
     for aresta in arestas:
         aresta['angulo'] = calcular_angulo(aresta['ponto1'], aresta['ponto2'])
@@ -61,6 +64,8 @@ def passo3():
 @app.route('/passo4', methods=['POST'])
 def passo4():
     selected_edges_json = request.form.get('selectedEdges')
+    selected_points = cache.get('selected_points')
+    #arestas = cache.get('arestas_s')
 
     if selected_edges_json:
         selected_edges = json.loads(selected_edges_json)
@@ -69,29 +74,29 @@ def passo4():
             print(edge)
             name = edge['name']
             weight = edge['weight']
-            G.add_edge(name[0], name[1], weight=int(weight))
+            estilo = edge['estilo']
+            G.add_edge(name[0], name[1], weight=int(weight), estilo=estilo)
 
         mst = nx.minimum_spanning_tree(G.to_undirected())
 
         mst_edges = []
         for edge in mst.edges(data=True):
-            name = f"{edge[0]}{edge[1]}"
-            weight = edge[2]['weight']
-            mst_edges.append({'name': name, 'weight': weight})
-            print(mst_edges)
+            name = f"{edge[0]}"
+            weight = edge[1]
+            estilo = f"{(edge[2])}"
+            mst_edges.append({'name': name, 'weight': weight, 'estilo': estilo})
 
         mst_edges.sort(key=lambda x: x['weight'])
 
         def has_cycle(graph, edge):
             return nx.has_path(graph, edge['name'][1], edge['name'][0])
 
-        if len(mst_edges) != 4:
-            return '<h1>O mestre Kruskal não conseguiu encontrar o tesouro, tente novamente</h1>'
-        
         print(mst_edges)
+        print(selected_points)
+        #print(arestas)
 
-        return render_template('passo4.html', mst_edges=mst_edges)
-    
+        return render_template('passo4.html', mst_edges=mst_edges, pontos=selected_points)
+
 
 
 @app.route('/resultado', methods=['POST'])

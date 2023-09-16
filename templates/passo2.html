@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
-<body>
+<body class="body1">
     <main>
         <form id="graph-form" action="/passo3" method="POST">
             <div class="passo2">
-                <h3>Selecione os caminhos entre as cidades e diga suas distâncias (km):</h3>
+                <h2>Agora vamos selecionar os caminhos (arestas)
+                    posicione o mouse sobre uma cidade<br>,
+                    aperte(a), posicione sobre outra, aperte(b),
+                    depois informe sua distância(peso):</h2>
                 <div id="map-container" style="position: relative; border: solid 10px brown;">
                     <img id="map" style="width: 450px; height: 450px;" src="/static/assets/mapa.png">
                 </div>
@@ -53,8 +56,8 @@
                     });
 
                     function getMousePosition(event) {
-                        var x = event.clientX - mapa.getBoundingClientRect().left;
-                        var y = event.clientY - mapa.getBoundingClientRect().top;
+                        var x = event.clientX - mapa.getBoundingClientRect().left -2;
+                        var y = event.clientY - mapa.getBoundingClientRect().top -2;
                         return { x: x, y: y };
                     }
 
@@ -104,14 +107,6 @@
 
     </main>
     <style>
-        .point {
-            width: 30px;
-            height: 30px;
-            background-color: red;
-            border-radius: 50%;
-            position: absolute;
-        }
-
         .aresta {
             position: absolute;
             background-color: blue;

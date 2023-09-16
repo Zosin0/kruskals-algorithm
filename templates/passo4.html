@@ -2,17 +2,32 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Passo-a-Passo</title>
+    <title>Passo 4</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="body1">
 <main>
+    <div class="passo3">
+        <h2>Você conseguiu montar o mapa!<br> Agora vamos selecionar os caminhos pela sua distância em ordem
+            crescente: </h2>
+        <div id="map-container" style="position: relative; border: solid 10px brown;">
+            <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
 
-    <div class="passo4">
-        <h1>Passo 4</h1>
-        <h5></h5>
+            {% for mst in mst_edges %}
+                <div class="linha line3" style="{{ mst.estilo }}"></div>
+                <style>
+                    .linha{{ mst.estilo }}
+                </style>
+            {% endfor %}
+        </div>
+
+        {% for ponto in pontos %}
+            <div class="point" style="top:{{ ponto.y }}; left: {{ ponto.x }}; "></div>
+        {% endfor %}
+
     </div>
 </main>
+
 
 </body>
 </html>
