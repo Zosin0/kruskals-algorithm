@@ -1,16 +1,18 @@
-*{
+* {
     padding: 0;
     margin: 0;
 
 }
-.body1{
-    background-image: url('assets/wooden-floor-background.jpg');
+
+.body1 {
+    background-image: url('https://lh3.googleusercontent.com/pw/AIL4fc_rtALCiYmXh-ATKv6zR5_YTxck3ClZ4ZU4LRm_ewxGzhAKxchYvLILrSgE9JNXAD6kBkX_CKPfHP_lwGEbE26szkYRmAdTyaVbLwI0VVjIQnDtORaNqyn2Ol2bPeEx8uKX40PGl874SopisShL675sVQ=w1071-h714-s-no?authuser=0');
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
     background-size: cover;
 }
-body{
+
+body {
     background-image: linear-gradient(antiquewhite, sandybrown);
     background-repeat: no-repeat;
     width: 100%;
@@ -18,23 +20,30 @@ body{
     /*background-size: cover;
     height: 100%;*/
 }
-h1{
+
+h1 {
     color: rgb(209, 14, 14);
     margin-top: 1%;
     margin-bottom: 1%;
 }
-h2{
+
+h2 {
     color: brown;
     text-align: center;
     margin-top: 1%;
     margin-bottom: 1%;
 }
-p{
-    margin: 10%;
-    font-size: 20px;
+
+#txt-mp{
+    width: 60%;
 }
 
-.enigma{
+p {
+    margin: 8%;
+    font-size: 17px;
+}
+
+.enigma {
     width: 400px;
     background-color: brown;
     color: white;
@@ -44,13 +53,13 @@ p{
     margin-top: 5%;
 }
 
-h3, h5, h6{
+h3, h5, h6 {
     margin-top: 1%;
     margin-bottom: 3%;
 
 }
 
-.jogar{
+.jogar {
     border-radius: 20px;
     border: solid 5px black;
     height: 80px;
@@ -58,25 +67,27 @@ h3, h5, h6{
     width: 250px;
     background-color: brown;
 }
-.jogar a{
+
+.jogar a {
     text-decoration: none;
     color: white;
     font-size: 25px;
 }
-.jogar a:hover{
+
+.jogar a:hover {
     text-decoration: underline;
     color: blue;
 }
 
 
-.passo1, .passo2, .passo3{
+.passo1, .passo2, .passo3 {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 }
 
-.explicacao{
+.explicacao {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,24 +95,38 @@ h3, h5, h6{
     align-items: center;
     text-align: justify;
 }
-.sel-points{
-    background-color: brown; margin-top: 5%; margin-bottom: 5%; border-radius: 40px; width: 200px; height: 30px;
+
+.sel-points {
+    background-color: brown;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 40px;
+    width: 200px;
+    height: 30px;
     color: white;
 
 }
-.sel-points:hover{
+
+.sel-points:hover {
     background-color: red;
     font-weight: bold;
 }
-.point{
+
+.point {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
     width: 40px;
     height: 40px;
+    color: blue;
     background-color: brown;
     border: solid 5px white;
     border-radius: 50%;
     position: absolute;
 }
-.obutton{
+
+.obutton {
     position: absolute;
     left: 43.5%;
     top: 65%;
@@ -113,10 +138,12 @@ h3, h5, h6{
     border-radius: 50%;
     cursor: pointer;
 }
-button:hover{
+
+button:hover {
     border: 5px solid blue;
 }
-.cap1, .cap2{
+
+.cap1, .cap2 {
     display: flex;
     width: 40%;
     text-align: justify;
@@ -125,14 +152,16 @@ button:hover{
     margin: 2%;
     flex-direction: column;
 }
-h5{
+
+h5 {
     font-size: 20px;
 }
-h6{
+
+h6 {
     font-size: 15px;
 }
 
-.circle{
+.circle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,19 +172,53 @@ h6{
     position: absolute;
 }
 
-.circulos{
+.circulos {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.BA{left: 656px; top: 64px; transform: rotate(44deg);}
-.AC{left: 798px; top: 68px; transform: rotate(316deg);}
-.DB{left: 616px; top: 213px; transform: rotate(341deg);}
-.ED{left: 731px; top: 298px; transform: rotate(90deg);}
-.EC{left: 841px; top: 211px; transform: rotate(19deg);}
-.DA{left: 683px; top: 84px; transform: rotate(13deg);}
-.EA{left: 766px; top: 63px; transform: rotate(347deg);}
+.BA {
+    left: 656px;
+    top: 64px;
+    transform: rotate(44deg);
+}
+
+.AC {
+    left: 798px;
+    top: 68px;
+    transform: rotate(316deg);
+}
+
+.DB {
+    left: 616px;
+    top: 213px;
+    transform: rotate(341deg);
+}
+
+.ED {
+    left: 731px;
+    top: 298px;
+    transform: rotate(90deg);
+}
+
+.EC {
+    left: 841px;
+    top: 211px;
+    transform: rotate(19deg);
+}
+
+.DA {
+    left: 683px;
+    top: 84px;
+    transform: rotate(13deg);
+}
+
+.EA {
+    left: 766px;
+    top: 63px;
+    transform: rotate(347deg);
+}
 
 
 .line1 {
@@ -183,40 +246,43 @@ h6{
 
 }
 
-.line3{
+.line3 {
     position: absolute;
     background-color: blue;
     transform-origin: left;
     display: flex;
-    justify-content: left;
-    align-items: right;
+    justify-content: center;
+    align-items: flex-start;
     font-size: 20px;
-    height: 5px;  
+    height: 5px;
     text-align: left;
 }
-.line3:hover{
+
+.line3:hover {
     border: 3px solid rgb(255, 0, 0);
 }
 
-.line1:hover, .line2:hover{
+.line1:hover, .line2:hover {
     border: 5px solid blue;
 }
 
-.line:hover{
+.line:hover {
     border: red 10px solid;
 }
 
-.passo1, .passo2, .passo3, .passo4{
+.passo1, .passo2, .passo3, .passo4 {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-main{
+
+main {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-.regras{
+
+.regras {
     display: flex;
 }

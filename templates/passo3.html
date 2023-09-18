@@ -11,36 +11,37 @@
 <main>
     <form id="gerarMST" method="POST" action="/passo4">
         <div class="passo3">
-            <h2>Você conseguiu montar o mapa!<br> Agora vamos selecionar os caminhos pela sua distância em ordem
-                crescente: </h2>
+            <h2 id="txt-mp">Você conseguiu montar o mapa!<br> Selecione os caminhos pela sua distância em ordem
+                crescente:
+            </h2>
             <div id="map-container" style="position: relative; border: solid 10px brown;">
                 <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
+
                 {% for aresta in arestas %}
-                    <div class="line3"
-                         style="width: {{ "%.1f"|format(aresta.largura) }}px; top: {{ "%.1f"|format(aresta.ponto1.y) }}px; left: {{ "%.1f"|format(aresta.ponto1.x) }}px; transform: rotate({{ aresta.angulo }}deg)"
+                    <div id="edge" class="line3" style="{{ aresta.style | safe }} left: {{ aresta.ponto1.x }}px; top: {{ aresta.ponto1.y }}px;"
                          data-weight='{{ aresta.distancia }}' data-name='{{ aresta.nome }}'>
-                        <p>{{ aresta.distancia }}km </p>
+                        <p> {{ aresta.distancia }}km </p>
                         <button hidden type="input" value='{{ aresta.distancia }}' id="{{ aresta.nome }}"
                                 name="{{ aresta.nome }}"></button>
                     </div>
                 {% endfor %}
             </div>
             {% for ponto in pontos %}
-                <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;"></div>
+                <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;">{{ ponto.pointCounter }}</div>
             {% endfor %}
 
             <button class="enigma" type="submit" onclick="sendSelectedEdges();">
-                Rodar o Enigma de Kruskal!
+                Econtrar seu caminho!
             </button>
         </div>
     </form>
 </main>
 <script>
     const edges = document.querySelectorAll('.line3'); // Seleciona todas as divs de aresta da classe line1
-
     const selectedEdges = []; // Array para armazenar as arestas selecionadas
 
     edges.forEach(edge => {
+
         edge.addEventListener('click', () => {
             const weight = edge.getAttribute('data-weight'); // Obtém o peso da aresta
             const name = edge.getAttribute('data-name'); // Obtém o nome da aresta
@@ -61,6 +62,7 @@
         form.appendChild(input);
         form.submit();
     }
+
 
 </script>
 </body>

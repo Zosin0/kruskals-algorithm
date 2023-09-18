@@ -1,119 +1,145 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <title>Passo 2</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-
 <body class="body1">
-    <main>
-        <form id="graph-form" action="/passo3" method="POST">
-            <div class="passo2">
-                <h2>Agora vamos selecionar os caminhos (arestas)
-                    posicione o mouse sobre uma cidade<br>,
-                    aperte(a), posicione sobre outra, aperte(b),
-                    depois informe sua distância(peso):</h2>
-                <div id="map-container" style="position: relative; border: solid 10px brown;">
-                    <img id="map" style="width: 450px; height: 450px;" src="/static/assets/mapa.png">
-                </div>
-                {% for ponto in pontos %}
-                <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;"></div>
-                {% endfor %}
-
-                <script>
-                    var selectedPoints = [];
-                    var arestas = [];
-
-                    var mapa = document.getElementById('map');
-                    var mapContainer = document.getElementById('map-container');
-                    var estadoSelecao = 0; // 0: Aguardando "a", 1: Aguardando "b"
-                    var ponto1 = null;
-                    var ponto2 = null;
-
-                    mapa.addEventListener('mousemove', function (event) {
-                        if (estadoSelecao === 0) {
-                            ponto1 = getMousePosition(event);
-                        } else if (estadoSelecao === 1) {
-                            ponto2 = getMousePosition(event);
-                        }
-                    });
-
-                    window.addEventListener('keydown', function (event) {
-                        if (estadoSelecao === 0 && event.key === 'a') {
-                            estadoSelecao = 1;
-                        } else if (estadoSelecao === 1 && event.key === 'b') {
-                            var distancia = parseFloat(prompt('Insira a distância (km) entre os pontos ' + selectedPoints.length + ' e ' + (selectedPoints.length + 1)));
-
-                            // Validar a entrada do usuário, verificar se é um número válido.
-                            console.log(distancia)
-                            if (!isNaN(distancia)) {
-                                desenharAresta(ponto1, ponto2, distancia);
-                                estadoSelecao = 0;
-                            }
-                        }
-                    });
-
-                    function getMousePosition(event) {
-                        var x = event.clientX - mapa.getBoundingClientRect().left -2;
-                        var y = event.clientY - mapa.getBoundingClientRect().top -2;
-                        return { x: x, y: y };
-                    }
-
-                    function desenharAresta(ponto1, ponto2, distancia) {
-                        console.log(ponto1);
-                        console.log(ponto2);
-                        var angulo = Math.atan2(ponto2.y - ponto1.y, ponto2.x - ponto1.x);
-                        var comprimento = Math.sqrt(Math.pow(ponto2.x - ponto1.x, 2) + Math.pow(ponto2.y - ponto1.y, 2));
-
-                        var arestaDiv = document.createElement('div');
-                        arestaDiv.className = 'aresta';
-
-                        arestaDiv.style.left = ponto1.x + 'px';
-                        arestaDiv.style.top = ponto1.y + 'px';
-                        arestaDiv.style.width = comprimento + 'px';
-                        arestaDiv.style.transform = 'rotate(' + angulo + 'rad)';
-                        arestaDiv.style.backgroundColor = 'blue';
-                        arestaDiv.setAttribute('data-weight', distancia);
-
-                        var arestaNome = 'aresta_' + selectedPoints.length;
-                        arestaDiv.setAttribute('data-name', arestaNome);
-
-                        mapContainer.appendChild(arestaDiv);
-
-                        arestas.push({ ponto1: ponto1, ponto2: ponto2, distancia: distancia, nome: arestaNome});
-                    }
-                    function selecionarArestas() {
-                        var distanciaInputs = document.getElementsByClassName('distancia');
-                        for (var i = 0; i < distanciaInputs.length; i++) {
-                            var distancia = distanciaInputs[i].value;
-                            arestas.push({ distancia: distancia }); // Armazene as distâncias no array de arestas
-                        }
-
-                        console.log(selectedPoints)
-                            
-                        document.getElementById('points-data').value = JSON.stringify(selectedPoints);
-                        document.getElementById('edges-data').value = JSON.stringify(arestas);  
-                        document.getElementById('graph-form').submit();
-                    }
-
-                </script>
-                <input type="hidden" id="points-data" name="points" value="">
-                <input type="hidden" id="edges-data" name="edges" value="">
-                <input class="sel-points" type="submit" value="Continuar" onclick="selecionarArestas()">
+<main>
+    <form id="graph-form" action="/passo3" method="POST">
+        <div class="passo2">
+            <h2 id="txt-mp">Agora vamos selecionar os caminhos (arestas)<br>
+                Clique em um ponto e arraste o mouse para outro ponto para criar uma aresta,
+                depois pressione "b" para finalizá-la e insira o peso:</h2>
+            <div id="map-container" style="position: relative; border: solid 10px brown;">
+                <img id="map" style=" width: 450px; height: 450px;" src="/static/assets/mapa.png">
             </div>
-        </form>
+            {% for ponto in pontos %}
+                <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;"
+                     onclick="iniciarAresta(this);">{{ ponto.pointCounter }}</div>
+            {% endfor %}
 
-    </main>
-    <style>
-        .aresta {
-            position: absolute;
-            background-color: blue;
-            transform-origin: left;
-            height: 5px;
-        }
-    </style>
+            <script>
+                var selectedPoints = [];
+                var arestas = [];
+
+                var mapa = document.getElementById('map');
+                var mapContainer = document.getElementById('map-container');
+                var ponto1 = null;
+                var arestaEmConstrucao = null;
+
+                document.addEventListener('keydown', function (event) {
+                    if (event.key === 'b' && ponto1 && arestaEmConstrucao) {
+                        finalizarArestaEmConstrucao();
+                    }
+                });
+
+                mapa.addEventListener('mousemove', function (event) {
+                    if (arestaEmConstrucao) {
+                        var pontoMouse = getMousePosition(event);
+                        ajustarArestaEmConstrucao(pontoMouse);
+                    }
+                });
+
+                function iniciarAresta(ponto) {
+                    if (!arestaEmConstrucao) {
+                        ponto1 = getMousePosition(event);
+                        arestaEmConstrucao = criarArestaEmConstrucao(ponto1);
+                    }
+                }
+
+                function getMousePosition(event) {
+                    var x = event.clientX - mapa.getBoundingClientRect().left - 2;
+                    var y = event.clientY - mapa.getBoundingClientRect().top - 2;
+                    return {x: x, y: y};
+                }
+
+                function criarArestaEmConstrucao(pontoInicial) {
+                    var arestaDiv = document.createElement('div');
+                    arestaDiv.className = 'aresta-em-construcao aresta-dinamica'; // Adicione a classe "aresta-dinamica"
+                    arestaDiv.style.position = 'absolute';
+                    arestaDiv.style.backgroundColor = 'blue';
+                    arestaDiv.style.transformOrigin = 'left';
+                    arestaDiv.style.height = '5px';
+                    arestaDiv.style.width = '0';
+                    arestaDiv.style.left = pontoInicial.x + 'px';
+                    arestaDiv.style.top = pontoInicial.y + 'px';
+                    mapContainer.appendChild(arestaDiv);
+                    return arestaDiv;
+                }
+
+                function ajustarArestaEmConstrucao(pontoMouse) {
+                    var angulo = Math.atan2(pontoMouse.y - ponto1.y, pontoMouse.x - ponto1.x);
+                    var comprimento = Math.sqrt(Math.pow(pontoMouse.x - ponto1.x, 2) + Math.pow(pontoMouse.y - ponto1.y, 2));
+
+                    arestaEmConstrucao.style.width = comprimento + 'px';
+                    arestaEmConstrucao.style.transform = 'rotate(' + angulo + 'rad)';
+                }
+
+                function finalizarArestaEmConstrucao() {
+                    if (ponto1 && arestaEmConstrucao) {
+                        var ponto2 = getMousePosition(event);
+                        var distancia = parseFloat(prompt('Insira a distância (km) para esta aresta:'));
+
+                        if (!isNaN(distancia)) {
+                            arestaEmConstrucao.className = 'aresta aresta-dinamica'; // Altere a classe para "aresta-dinamica"
+                            arestaEmConstrucao.setAttribute('data-weight', distancia);
+
+                            var arestaNome = 'aresta_' + selectedPoints.length;
+                            arestaEmConstrucao.setAttribute('data-name', arestaNome);
+
+                            // Obtém os estilos da aresta em construção
+                            var estiloAresta = window.getComputedStyle(arestaEmConstrucao);
+                            var estiloArestaJSON = {
+                                backgroundColor: estiloAresta.backgroundColor,
+                                width: estiloAresta.width,
+                                transform: estiloAresta.transform
+                            };
+
+                            arestas.push({
+                                ponto1: ponto1,
+                                ponto2: ponto2,
+                                distancia: distancia,
+                                nome: arestaNome,
+                                style: estiloArestaJSON
+                            });
+                        } else {
+                            mapContainer.removeChild(arestaEmConstrucao);
+                        }
+
+                        ponto1 = null;
+                        arestaEmConstrucao = null;
+                    }
+                }
+
+                function selecionarArestas() {
+                    var distanciaInputs = document.getElementsByClassName('distancia');
+                    for (var i = 0; i < distanciaInputs.length; i++) {
+                        var distancia = distanciaInputs[i].value;
+                        arestas.push({distancia: distancia}); // Armazene as distâncias no array de arestas
+                    }
+
+                    document.getElementById('points-data').value = JSON.stringify(selectedPoints);
+                    document.getElementById('edges-data').value = JSON.stringify(arestas);
+                    document.getElementById('graph-form').submit();
+                }
+
+            </script>
+            <input type="hidden" id="points-data" name="points" value="">
+            <input type="hidden" id="edges-data" name="edges" value="">
+            <input class="sel-points" type="submit" value="Continuar" onclick="selecionarArestas()">
+        </div>
+    </form>
+</main>
+<style>
+    .aresta, .aresta-em-construcao {
+        position: absolute;
+    }
+
+    .aresta-em-construcao {
+        opacity: 0.7;
+    }
+</style>
 </body>
-
 </html>
