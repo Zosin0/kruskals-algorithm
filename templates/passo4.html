@@ -16,32 +16,46 @@
             <div id="mst-container" style="position: relative; border: solid 10px brown;">
                 <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
                 {% for aresta in mst_edges %}
-                <div class="aresta mst-aresta" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
+                <div class="line3" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
                     <p>{{ aresta.weight }}km</p>
                 </div>
                 {% endfor %}
             </div>
-
-            <h2>Caminho Mais Longo</h2>
-            <div id="longest-path-container" style="position: relative; border: solid 10px brown;">
-                <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
-                {% for aresta in longest_path_edges %}
-                <div class="aresta longest-path-aresta" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
-                    <p>{{ aresta.weight }}km</p>
-                </div>
-                {% endfor %}
-            </div>
-
-            <h2>Ciclos Evitados</h2>
-            <div id="cycle-container" style="position: relative; border: solid 10px brown;">
-                <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
-                {% for aresta in cycle_edges %}
-                <div class="aresta cycle-aresta" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
-                    <p>{{ aresta.weight }}km</p>
-                </div>
-                {% endfor %}
-            </div>
+            {% for ponto in pontos %}
+                <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;">{{ ponto.pointCounter }}</div>
+            {% endfor %}
         </div>
+
+            <h2 id="txt-mp">Caminho Mais Longo</h2>
+            <div class="passo3">
+                <div id="longest-path-container" style="position: relative; border: solid 10px brown;">
+                    <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
+                    {% for aresta in longest_path_edges %}
+                    <div class="line3" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
+                        <p>{{ aresta.weight }}km</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% for ponto in pontos %}
+                    <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;">{{ ponto.pointCounter }}</div>
+                {% endfor %}
+            </div>
+
+            <h2 id="txt-mp">Ciclos Evitados</h2>
+            <div class="passo3">
+                <div id="cycle-container" style="position: relative; border: solid 10px brown;">
+                    <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
+                    {% for aresta in cycle_edges %}
+                    <div class="line3" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
+                        <p>{{ aresta.weight }}km</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% for ponto in pontos %}
+                    <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;">{{ ponto.pointCounter }}</div>
+                {% endfor %}
+            </div>
+
     </main>
 </body>
 

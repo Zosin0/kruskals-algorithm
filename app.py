@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_caching import Cache
-import networkx as nx
+from networkx.algorithms import find_cycle
 import json
 import math
+import gzip
+
 
 app = Flask(__name__)
 app.config['CACHE_TYPE'] = 'simple'
@@ -70,6 +72,7 @@ def passo3():
 def has_cycle(graph, edge):
     return nx.has_path(graph, edge['name'][1], edge['name'][0])
 
+
 def find_longest_path(graph, start):
     def dfs(node, path):
         nonlocal longest_path
@@ -84,53 +87,65 @@ def find_longest_path(graph, start):
     dfs(start, [])
     return longest_path
 
+
+import networkx as nx
+
 @app.route('/passo4', methods=['POST'])
 def passo4():
     selected_edges_json = request.form.get('selectedEdges')
-    selected_points = cache.get('selected_points')
+    pontos = cache.get('selected_points')
 
     if selected_edges_json:
         selected_edges = json.loads(selected_edges_json)
 
-        # Crie um grafo ponderado não direcionado
+        # Verifique se as arestas estão em ordem crescente de peso
+        sorted_edges = sorted(selected_edges, key=lambda edge: float(edge['weight']))
+        if selected_edges != sorted_edges:
+            return '<h1>Por favor, insira as arestas em ordem crescente de peso.</h1>'
+
+        # Renomeie as arestas para tornar os nomes únicos
+        for i, edge in enumerate(selected_edges):
+            edge['name'] = f'aresta_{i + 1}'
+
+        # Inicialize o grafo e listas de MST e ciclos
         G = nx.Graph()
+        mst_edges = []
+        cycle_edges = []
+
         for edge in selected_edges:
             name = edge['name']
-            weight = edge['weight']
+            weight = float(edge['weight'])
             estilo = edge['estilo']
-            G.add_edge(name[0], name[1], weight=int(weight), estilo=estilo)
+            G.add_edge(name[0], name[1], weight=weight, estilo=estilo)
 
-        # Calcule a MST usando o algoritmo de Kruskal
-        mst = nx.minimum_spanning_tree(G)
+            # Verifique se a adição da aresta gera um ciclo
+            if find_cycle(G, orientation='ignore'):
+                # Se gerar ciclo, adicione à lista de ciclos
+                cycle_edges.append(edge)
+                # Remova a aresta para evitar ciclos na MST
+                G.remove_edge(name[0], name[1])
+            else:
+                # Se não gerar ciclo, adicione à MST
+                mst_edges.append(edge)
 
-        # Extraia as arestas da MST
-        mst_edges = []
-        for u, v, data in mst.edges(data=True):
-            weight = data['weight']
-            estilo = data['estilo']
-            mst_edges.append({'name': (u, v), 'weight': weight, 'estilo': estilo})
+        # Verifique se o grafo é desconexo (mais de uma árvore)
+        num_trees = len(list(nx.connected_components(G)))
+        if num_trees > 1:
+            tree_type = 'floresta'  # Mais de uma árvore
+        else:
+            tree_type = 'árvore única'
 
-        mst_edges.sort(key=lambda x: x['weight'])
+        print(mst_edges)
+        print(cycle_edges)
+        print(tree_type)
 
-        # Encontre o caminho mais longo
-        start_node = list(G.nodes())[0]
-        longest_path_edges = find_longest_path(G, start_node)
-
-        # Encontre os ciclos evitados
-        cycle_edges = []
-        for cycle in nx.simple_cycles(G):
-            if len(cycle) > 3:
-                for i in range(len(cycle) - 1):
-                    edge_name = (cycle[i], cycle[i + 1])
-                    weight = G.get_edge_data(*edge_name)['weight']
-                    estilo = G.get_edge_data(*edge_name)['estilo']
-                    cycle_edges.append({'name': edge_name, 'weight': weight, 'estilo': estilo})
-                edge_name = (cycle[-1], cycle[0])
-                weight = G.get_edge_data(*edge_name)['weight']
-                estilo = G.get_edge_data(*edge_name)['estilo']
-                cycle_edges.append({'name': edge_name, 'weight': weight, 'estilo': estilo})
-
-        return render_template('passo4.html', mst_edges=mst_edges, longest_path_edges=longest_path_edges, cycle_edges=cycle_edges, pontos=selected_points)
+        return render_template(
+            'passo4.html',
+            mst_edges=mst_edges,
+            cycle_edges=cycle_edges,
+            tree_type=tree_type,
+            pontos=pontos
+        )
 
     else:
         return render_template('passo4_no_selection.html')

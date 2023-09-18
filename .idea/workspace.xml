@@ -7,11 +7,6 @@
     <list default="true" id="e511946e-c9a2-4b88-aaf7-c61e24ca4bea" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/passo1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/passo1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/passo2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/passo2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/passo3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/passo3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/passo4.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/passo4.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +91,7 @@
       <workItem from="1694866964240" duration="2598000" />
       <workItem from="1694966503566" duration="10093000" />
       <workItem from="1694990733850" duration="501000" />
-      <workItem from="1695035756983" duration="8441000" />
+      <workItem from="1695035756983" duration="14010000" />
     </task>
     <servers />
   </component>
@@ -115,6 +110,6 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/kruskals_algorithm$kruskals_algorithm.coverage" NAME="kruskals-algorithm Coverage Results" MODIFIED="1695045145931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/kruskals_algorithm$kruskals_algorithm.coverage" NAME="kruskals-algorithm Coverage Results" MODIFIED="1695065316549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
