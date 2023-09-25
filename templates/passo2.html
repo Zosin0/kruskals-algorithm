@@ -7,13 +7,13 @@
 </head>
 <body class="body1">
 <main>
-    <form id="graph-form" action="/passo3" method="POST">
+    <form id="graph-form" action="/jogo" method="POST">
         <div class="passo2">
             <h2 id="txt-mp">Agora vamos selecionar os caminhos (arestas)<br>
                 Clique em um ponto e arraste o mouse para outro ponto para criar uma aresta,
                 depois pressione "b" para finalizá-la e insira o peso:</h2>
             <div id="map-container" style="position: relative; border: solid 10px brown;">
-                <img id="map" style=" width: 450px; height: 450px;" src="/static/assets/mapa.png">
+                <img id="map" style=" width: 450px; height: 450px;" src="/static/assets/mapa2.png">
             </div>
             {% for ponto in pontos %}
                 <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;"

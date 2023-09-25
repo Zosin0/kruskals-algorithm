@@ -1,7 +1,13 @@
+@font-face {
+    font-family: 'Old';
+    src: url('Olondon_.otf') format('opentype'), url('OldLondon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     padding: 0;
     margin: 0;
-
 }
 
 .body1 {
@@ -12,35 +18,115 @@
     background-size: cover;
 }
 
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
 body {
     background-image: linear-gradient(antiquewhite, sandybrown);
     background-repeat: no-repeat;
     width: 100%;
     background-size: cover;
-    /*background-size: cover;
-    height: 100%;*/
+}
+
+.caps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.h1 {
+    padding-top: 1%;
+    font-family: 'Old';
+    color: rgb(121, 49, 0);
+    font-size: 60px;
 }
 
 h1 {
     color: rgb(209, 14, 14);
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-top: 2%;
+    font-size: 40px;
+
 }
 
+.start-button {
+    width: 150px;
+    font-size: 25px;
+    color: white;
+    background-color: brown;
+    border-radius: 20px;
+    height: 30px;
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+.mapa-completo{
+    position: relative;
+}
+
+.omapa{
+    width: 470px;
+    height: 470px;
+    border: solid brown 10px;
+}
+
+.oponto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background-color: deepskyblue;
+    color: red;
+    border-radius: 50%;
+    position: absolute;
+}
+asarestas{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+    text-align: center;
+    position: absolute;
+}
+
+.aaresta{
+    background-color: blue;
+    font-size: 20px;
+    height: 5px;
+}
+
+aresta-select{
+    position: absolute;
+}
+p{
+    margin-bottom: 20px;
+}
 h2 {
     color: brown;
+    font-size: 30px;
     text-align: center;
-    margin-top: 1%;
-    margin-bottom: 1%;
 }
 
-#txt-mp{
-    width: 60%;
-}
 
-p {
-    margin: 8%;
+.p1 {
     font-size: 17px;
+    width: 40%;
+    text-align: justify;
+    font-size: 25px;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    font-style: italic;
 }
 
 .enigma {
@@ -55,9 +141,30 @@ p {
 
 h3, h5, h6 {
     margin-top: 1%;
-    margin-bottom: 3%;
+    margin-bottom: 1%;
 
 }
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.navigation > a {
+    font-size: 28px;
+    background-color: red;
+    border-radius: 20px;
+    width: 130px;
+    margin: 5%;
+}
+
+.navigation > a:hover {
+    color: white;
+    background-color: deepskyblue;
+}
+
 
 .jogar {
     border-radius: 20px;
@@ -158,7 +265,9 @@ h5 {
 }
 
 h6 {
-    font-size: 15px;
+    font-size: 20px;
+    width: 50%;
+    text-align: justify;
 }
 
 .circle {
@@ -176,6 +285,7 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 6%;
 }
 
 .BA {

@@ -4,9 +4,11 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
-<body>
-    <h1>Selecione as arestas na ordem:</h1><br>
-    <p></p>
+<body class="body1">
+    <h2 id="txt-mp">
+        Este é o mapa que Kruskal deixou, seu objetivo é seguir as regras
+
+    </h2><br>
     <form id="gerarMST" method="POST" action="/resultado">
         <section class="linhas">
 
@@ -43,7 +45,7 @@
             </div>
         </section>
 
-        <button type="submit" onclick="sendSelectedEdges();">
+        <button class="obutton" type="submit" onclick="sendSelectedEdges();">
             Achar o tesouro!
         </button>
     </form>

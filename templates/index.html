@@ -6,135 +6,29 @@
 
 <body>
 <main>
-    <h1>O Enigma de Kruskal</h1>
-    <div class="cap1">
-        <h2>A História de Kruskal</h2>
-        <h5>
-            Há muitos anos, um brilhante matemático chamado Kruskal desvendou um segredo valioso, o "Algoritmo de
-            Kruskal". Com sua incrível descoberta, ele acumulou riquezas além da imaginação. No entanto, à medida que
-            envelhecia, Kruskal percebeu que a verdadeira riqueza estava em compartilhar seu conhecimento com o mundo.
-
-            Antes de sua morte, Kruskal deixou um enigma para as gerações futuras. Em uma nota misteriosa, ele revelou
-            que as pistas para seu algoritmo e sua fortuna estavam escondidas em um mapa especial. Aquele que
-            conseguisse decifrar esse mapa também desvendaria os segredos do "Algoritmo de Kruskal" e herdará suas
-            riquezas.
-
-            Você, um jovem explorador destemido, encontrou essa nota e decidiu aceitar o desafio. Agora, embarque em uma
-            emocionante jornada em busca das pistas de Kruskal, resolvendo enigmas e quebra-cabeças pelo caminho. À
-            medida que você segue o mapa, descobrirá os conceitos e funções desse algoritmo lendário que mudou o mundo
-            da matemática.
-
-            Prepare-se para a aventura de uma vida e a oportunidade de desvendar os mistérios do "Algoritmo de Kruskal"!
-            Suas habilidades serão testadas, sua mente será desafiada, e seu sucesso será recompensado com conhecimento
-            e riqueza inigualáveis.
-
-        </h5>
-        <h1>Capítulo 1: Desvendando os Conceitos</h1>
-        <h5>
-            <h2>Grafo - O Mapa Misterioso:</h2>
-            <h6>
-                Imagine o mundo de Kruskal como um mapa misterioso, onde cada local é representado como um nó e as
-                estradas que os conectam são as arestas do grafo. Esses nós e arestas formam um quebra-cabeça
-                complexo
-                que você precisa resolver para encontrar o tesouro. Cada ponto no mapa é um possível candidato ao
-                local onde Kruskal escondeu sua fortuna.
-            </h6>
-            <img style="width: 150px; margin-bottom: 3%;" src="/static/assets/mapa.png" alt="mapa">
-            <h2>Ciclo - Evitando Voltas Erradas:</h2>
-            <h6>
-                Durante sua exploração, lembre-se de que Kruskal era meticuloso em evitar retornos indesejados. Um
-                ciclo
-                é como dar voltas em círculos sem sair do lugar. Se você incluir uma aresta que forma um ciclo em
-                sua
-                floresta, estará apenas desperdiçando tempo e recursos. Seja eficiente e escolha as arestas
-                cuidadosamente para evitar ciclos.
-            </h6>
-            <!--Colocar imagem para representar um ciclo-->
-            <img style="width: 150px; margin-bottom: 3%;" src="" alt="ciclo">
-
-            <h2>Árvore Geradora Mínima - Desvendando o Caminho:</h2>
-            <h6>
-                Kruskal era um mestre em encontrar o caminho mais curto e eficaz. A árvore geradora mínima é como o
-                esqueleto do mapa misterioso de Kruskal. Ela conecta todos os locais necessários usando o menor
-                número
-                possível de estradas, garantindo que você não perca tempo indo por caminhos desnecessários. Sua
-                tarefa é
-                construir essa árvore à medida que explora o mapa.
-            </h6>
-            <!--Colocar imagem para representar uma arvore-->
-            <img style="width: 150px; margin-bottom: 3%;" src="" alt="arvore">
-
-            <h2>Floresta - Início com Nós Solitários:</h2>
-            <h6>
-                Ao iniciar sua jornada, você começa com uma floresta de nós isolados. Esses são como pontos de
-                partida
-                separados. Seu desafio é transformar essa floresta em uma única árvore geradora mínima, unindo todos
-                os
-                locais importantes em um único caminho coerente.
-            </h6>
-            <!--Colocar imagem para representar uma floresta-->
-            <img style="width: 150px; margin-bottom: 3%;" src="" alt="floresta">
-
-            <h2>Diferença entre Kruskal e Prim - Duelo de Gênios:</h2>
-            <h6>
-                Nesta terra misteriosa, há também um competidor chamado Prim. Embora ambos sejam gênios, Kruskal e
-                Prim
-                têm abordagens diferentes para resolver o enigma. Enquanto Kruskal começa com nós separados e os une
-                gradualmente, Prim começa com um único nó e cresce a árvore a partir dele. A diferença entre suas
-                estratégias é o que faz Kruskal se destacar.
-            </h6>
-            <!--Colocar imagem para representar a diferença entre algoritmos-->
-            <img style="width: 150px; margin-bottom: 3%;" src="" alt="dif">
-
-        </h5>
-    </div>
-
-    <div class="cap2">
-        <h1>Capítulo 2: As Regras do Jogo</h1>
-        <h5>
-            <h2>Exploração - Revelando o Mapa:</h2>
-            <h6>
-                Ao começar sua jornada, você começa de um ponto misterioso no mapa. Sua primeira tarefa é explorar
-                os arredores e revelar os nós e as estradas à sua frente, como se estivesse decifrando o mapa de
-                Kruskal.
-            </h6>
-            <h2>Seleção de Arestas - Escolha com Sabedoria:</h2>
-            <h6>
-                À medida que explora, você deve escolher com sabedoria quais arestas incluir em sua floresta
-                inicial. Pense em como Kruskal teria feito isso, selecionando apenas as estradas essenciais que o
-                levariam mais perto do tesouro, sem criar ciclos.
-            </h6>
-
-            <h2>Expansão da Floresta - Unindo os Nós:</h2>
-            <h6>
-                Sua floresta inicial crescerá à medida que você adiciona mais nós a ela, unindo-os através das
-                estradas que escolheu. O objetivo é criar uma única árvore geradora mínima que lhe revele o caminho
-                até o tesouro.
-            </h6>
-
-            <h2>Evitar os Ciclos - Seguindo a Filosofia de Kruskal:</h2>
-            <h6>
-                Mantenha em mente a filosofia de Kruskal de evitar ciclos a todo custo. Se você notar que uma aresta
-                criaria um ciclo na sua floresta, deixe-a de lado e continue sua busca por um caminho sem retornos
-                indesejados.
-            </h6>
-
-            <h2>Chegada ao Tesouro - O Grande Momento:</h2>
-            <h6>
-                À medida que sua floresta cresce e você segue as regras de Kruskal, você eventualmente chegará ao nó
-                onde o tesouro foi escondido. Este é o grande momento da sua jornada. Você decifrou o enigma de
-                Kruskal e encontrou a fortuna perdida, tudo graças à sua compreensão dos conceitos e à sua
-                habilidade de seguir as regras do jogo.
-            </h6>
-
-            <button class="jogar" type="button"><a href="passo1">Jogar o jogo!</a></button>
-
+    <div class="container">
+        <h1 class="h1">O Enigma de Kruskal</h1>
+        <div class="p1">
+            <p>Há muitos anos, em um reino coberto por uma densa floresta misteriosa, vivia um gênio matemático chamado
+                Kruskal. Ele era conhecido por sua mente brilhante e sua paixão por desvendar enigmas aparentemente
+                impossíveis.</p>
+            <p>Um dia, um enigma intrigante chegou aos ouvidos de Kruskal. Um mapa antigo, repleto de símbolos e
+                estradas, revelou a existência de 10 cidades lendárias, cada uma guardando segredos ancestrais. Seu
+                irmão mais velho, Prim, havia tentado desvendar o enigma, mas falhou...</p>
+            <p>O enigma era o seguinte: encontrar o caminho ótimo que ligava as 10 cidades, percorrendo a menor
+                distância possível. Kruskal, movido por seu espírito aventureiro, aceitou o desafio.</p>
+            <p>Guiado por seu conhecimento em teoria dos grafos, ele traçou as estradas e, com grande sagacidade,
+                encontrou o caminho mínimo, passando por cada cidade uma única vez. Em sua jornada, ele escondeu um baú
+                em uma das cidades, contendo toda a sua fortuna. No entanto, a senha para abrir o baú era um enigma em
+                si: a soma de todas as arestas que formam a Árvore Geradora Mínima (AGM) do grafo que ele havia criado.
+            </p>
+            <p>Agora, você, como aventureiro e entusiasta da matemática, é convocado a seguir os passos de Kruskal e
+                resolver o enigma. As cidades ancestrais, as estradas sinuosas e o baú com a riqueza de Kruskal aguardam
+                sua coragem e inteligência.</p>
         </div>
+
+        <a class="start-button" href="1">Começar</a>
+    </div>
 </main>
-
 </body>
-<script>
-
-</script>
-
 </html>

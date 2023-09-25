@@ -10,7 +10,6 @@ app = Flask(__name__)
 app.config['CACHE_TYPE'] = 'simple'
 cache = Cache(app)
 
-
 def calcular_angulo(ponto1, ponto2):
     return math.degrees(math.atan2(ponto2['y'] - ponto1['y'], ponto2['x'] - ponto1['x']))
 
@@ -19,8 +18,29 @@ def calcular_angulo(ponto1, ponto2):
 def home():
     return render_template('index.html')
 
+@app.route('/1')
+def p1():
+    return render_template('1.html')
+@app.route('/2')
+def p2():
+    return render_template('2.html')
+@app.route('/3')
+def p3():
+    return render_template('3.html')
+@app.route('/4')
+def p4():
+    return render_template('4.html')
+@app.route('/5')
+def p5():
+    return render_template('5.html')
+@app.route('/jogar')
+def jogo1():
+    return render_template('jogo1.html')
 
-@app.route('/jogo')
+
+
+
+@app.route('/jogo', methods=['GET', 'POST'])
 def index():
     return render_template('jogo.html')
 
@@ -153,6 +173,8 @@ def passo4():
 @app.route('/resultado', methods=['POST'])
 def resultado():
     selected_edges_json = request.form.get('selectedEdges')
+    arestas_s = json.loads(selected_edges_json)
+    cache.set('arestas_s', arestas_s)
 
     if selected_edges_json:
         selected_edges = json.loads(selected_edges_json)
@@ -181,6 +203,26 @@ def resultado():
             return '<h1>O mestre Kruskal não conseguiu encontrar o tesouro, tente novamente</h1>'
         return render_template('resultado.html', mst_edges=mst_edges)
 
+    else:
+        return "Nenhuma aresta selecionada."
+
+@app.route('/ciclos')
+def draw_cycles():
+    selected_edges_json = cache.get('arestas_s')
+
+    if selected_edges_json:
+        selected_edges = selected_edges_json
+        G = nx.DiGraph()
+        for edge in selected_edges:
+            name = edge['name']
+            weight = edge['weight']
+            G.add_edge(name[0], name[1], weight=int(weight))
+
+        # Use networkx para encontrar os ciclos no grafo
+        cycles = list(nx.simple_cycles(G))
+
+        # Renderize a página HTML para exibir os ciclos
+        return render_template('ciclos.html', cycles=cycles)
     else:
         return "Nenhuma aresta selecionada."
 
