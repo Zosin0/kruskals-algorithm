@@ -14,6 +14,10 @@
     </h2><br>
     <div class="mapa-completo">
         <img class="omapa" src="/static/assets/mapa.png" alt="mapa-completo">
+        <div class="the-lines">
+
+        </div>
+
         <div class="ospontos">
             <div name="1" class="oponto" style="top: 61px; left:244px;">1</div>
             <div name="2" class="oponto" style="top: 128px; left:128px;">2</div>
@@ -26,9 +30,6 @@
             <div name="9" class="oponto" style="top: 348px; left:238px;">9</div>
             <div name="10" class="oponto" style="top: 199px; left:238px;">10</div>
         </div>
-        <div class="the-lines">
-
-        </div>
     </div>
 
     <div class="asarestas">
@@ -36,50 +37,61 @@
             Selecione as arestas em ordem crescente, lembre-se das regras do jogo:
         </h2><br>
         <form>
-            <!-- Adicionei um ID às divs de aresta para facilitar a ordenação -->
-            <p>1 -- 2: 10Km</p><br><br>
-            <div id="a1-2" data-weight="10" name="a1-2" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(3, '1', '2', 10)"></div>
+            <p>1 -- 2: 10Km</p>
+            <div data-weight="10" name="a1-2" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('1', '2', 10)"></div>
+            <br>
 
-            <p>1 -- 3: 11Km</p><br><br>
-            <div id="a1-3" data-weight="11" name="a1-3" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(4, '1', '3', 11)"></div>
+            <p>1 -- 3: 11Km</p>
+            <div data-weight="11" name="a1-3" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('1', '3', 11)"></div>
+            <br>
 
-            <p>1 -- 10: 14Km</p><br><br>
-            <div id="a1-10" data-weight="14" name="a1-10" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(6, '1', '10', 14)"></div>
+            <p>1 -- 10: 14Km</p>
+            <div data-weight="14" name="a1-10" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('1', '10', 14)"></div>
+            <br>
 
-            <p>2 -- 4: 23Km</p><br><br>
-            <div id="a2-4" data-weight="23" name="a2-4" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(10, '2', '4', 23)"></div>
+            <p>2 -- 4: 23Km</p>
+            <div data-weight="23" name="a2-4" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('2', '4', 23)"></div>
+            <br>
 
-            <p>3 -- 5: 22Km</p><br><br>
-            <div id="a3-5" data-weight="22" name="a3-5" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(9, '3', '5', 22)"></div>
+            <p>3 -- 5: 22Km</p>
+            <div data-weight="22" name="a3-5" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('3', '5', 22)"></div>
+            <br>
 
-            <p>4 -- 6: 15Km</p><br><br>
-            <div id="a4-6" data-weight="15" name="a4-6" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(7, '4', '6', 15)"></div>
+            <p>4 -- 6: 15Km</p>
+            <div data-weight="15" name="a4-6" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('4', '6', 15)"></div>
+            <br>
 
-            <p>5 -- 7: 13Km</p><br><br>
-            <div id="a5-7" data-weight="13" name="a5-7" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(5, '5', '7', 13)"></div>
+            <p>5 -- 7: 13Km</p>
+            <div data-weight="13" name="a5-7" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('5', '7', 13)"></div>
+            <br>
 
-            <p>6 -- 8: 9Km</p><br><br>
-            <div id="a6-8" data-weight="9" name="a6-8" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(2, '6', '8', 9)"></div>
+            <p>6 -- 8: 9Km</p>
+            <div data-weight="9" name="a6-8" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('6', '8', 9)"></div>
+            <br>
 
-            <p>7 -- 8: 8Km</p><br><br>
-            <div id="a7-8" data-weight="8" name="a7-8" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(1, '7', '8', 8)"></div>
+            <p>7 -- 8: 8Km</p>
+            <div data-weight="8" name="a7-8" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('7', '8', 8)"></div>
+            <br>
 
-            <p>8 -- 9: 7Km</p><br><br>
-            <div id="a8-9" data-weight="7" name="a8-9" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(0, '8', '9', 7)"></div>
+            <p>8 -- 9: 7Km</p>
+            <div data-weight="7" name="a8-9" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('8', '9', 7)"></div>
+            <br>
 
-            <p>9 -- 10: 18Km</p><br><br>
-            <div id="a9-10" data-weight="18" name="a9-10" class="aaresta" style="width: 100px"
-                 onclick="adicionarAresta(8, '9', '10', 18)"></div>
+            <p>9 -- 10: 18Km</p>
+            <div data-weight="18" name="a9-10" class="aaresta" style="width: 100px"
+                 onclick="adicionarAresta('9', '10', 18)"></div>
+            <br>
+
         </form>
     </div>
 </main>
@@ -99,7 +111,7 @@
     };
 
     // Lista de arestas disponíveis
-    let arestasDisponiveis = [
+    const arestasDisponiveis = [
         {start: "1", end: "2", weight: 10},
         {start: "1", end: "3", weight: 11},
         {start: "1", end: "10", weight: 14},
@@ -113,69 +125,143 @@
         {start: "9", end: "10", weight: 18},
     ];
 
-    let selectedArestas = []; // Lista para armazenar as arestas selecionadas
+    // Lista de arestas selecionadas
+    const arestasSelecionadas = [];
 
-    function adicionarAresta(index, start, end, weight) {
-        // Verificar se a aresta pode ser adicionada
-        if (selectedArestas.length === 0 || weight >= selectedArestas[selectedArestas.length - 1].weight) {
-            // Adicionar a aresta à lista
-            selectedArestas.push({start, end, weight});
+    // Peso mínimo permitido
+    let pesoMinimoPermitido = 7; // Começa com 7
 
-            // Desenhar a aresta no mapa
-            desenharAresta(start, end);
+    // Função para adicionar uma aresta
+    function adicionarAresta(start, end, weight) {
+        if (pesoMinimoPermitido === 12) {
+            pesoMinimoPermitido = 13;
+        } else if (pesoMinimoPermitido === 16) {
+            pesoMinimoPermitido = 18;
+        } else if (pesoMinimoPermitido === 19) {
+            pesoMinimoPermitido = 22;
+        }
 
-            // Remover a aresta disponível
-            arestasDisponiveis.splice(index, 1);
+        if (weight === pesoMinimoPermitido) {
+            if (pesoMinimoPermitido == 22 || pesoMinimoPermitido == 22) {
+                alert("Você está formando um ciclo, verifique sua árvore novamente");
+            } else {
+                if (podeAdicionarAresta(start, end)) {
+                    // Desenha a aresta no mapa
+                    desenharAresta(start, end, weight);
 
-            // Verificar se formou um ciclo
-            if (formouCiclo()) {
-                alert("Você formou um ciclo! Remova uma aresta para continuar.");
+                    // Verifica se o usuário completou a ordem crescente
+                    if (arestasSelecionadas.length === 9) {
+                        alert("Você concluiu a seleção de arestas com sucesso!");
+                    }
+
+                    arestasSelecionadas.push({ start, end, weight });
+
+                    // Atualiza o peso mínimo permitido
+                    pesoMinimoPermitido++;
+
+                } else {
+                    alert("A adição dessa aresta não segue a ordem crescente ou formaria um ciclo. Selecione outra.");
+                }
             }
         } else {
-            alert("Selecione as arestas em ordem crescente de peso.");
+            alert("Você deve selecionar a próxima aresta de peso mínimo: " + pesoMinimoPermitido);
         }
     }
 
-    function desenharAresta(start, end) {
-        const canvas = document.querySelector(".the-lines");
-        const ctx = canvas.getContext("2d");
+    // Função para verificar se uma aresta pode ser adicionada
+    function podeAdicionarAresta(start, end) {
+        // Encontra a próxima aresta com o menor peso
+        const proximaAresta = arestasDisponiveis.find(aresta =>
+            aresta.weight === pesoMinimoPermitido &&
+            ((aresta.start === start && aresta.end === end) || (aresta.start === end && aresta.end === start))
+        );
 
-        const startVertex = vertices[start];
-        const endVertex = vertices[end];
-
-        ctx.beginPath();
-        ctx.moveTo(startVertex.left, startVertex.top);
-        ctx.lineTo(endVertex.left, endVertex.top);
-        ctx.stroke();
+        // Verifica se a próxima aresta com o menor peso foi encontrada
+        return proximaAresta != undefined;
     }
 
-    function formouCiclo() {
-        const parent = new Map();
+    // Função para desenhar uma aresta no mapa
+    function desenharAresta(start, end, weight) {
+        const startPoint = vertices[start];
+        const endPoint = vertices[end];
 
-        function find(x) {
-            if (!parent.has(x)) {
-                return x;
+        const distancia = Math.sqrt(
+            Math.pow(endPoint.top - startPoint.top, 2) +
+            Math.pow(endPoint.left - startPoint.left, 2)
+        );
+
+        const angle = Math.atan2(endPoint.top - startPoint.top, endPoint.left - startPoint.left);
+
+        const edgeDiv = document.createElement('div');
+        edgeDiv.classList.add('edge');
+        edgeDiv.style.top = startPoint.top + 5 + 'px';
+        edgeDiv.style.left = startPoint.left + 15 + 'px';
+        edgeDiv.style.width = distancia + 'px';
+        edgeDiv.style.transform = `rotate(${angle}rad)`;
+        edgeDiv.textContent = `${weight}Km`;
+
+        document.querySelector('.the-lines').appendChild(edgeDiv);
+    }
+
+    const somaArestasInput = document.createElement('input');
+    somaArestasInput.type = 'text';
+    somaArestasInput.style = 'widht: 600px; border-radius: 20px; background-color: brown; color: white;'
+    somaArestasInput.placeholder = '';
+    document.querySelector('.asarestas').appendChild(somaArestasInput);
+
+    // Adicione um botão para verificar a resposta do jogador
+    const verificarRespostaBtn = document.createElement('button');
+    verificarRespostaBtn.textContent = 'Verificar Resposta';
+    verificarRespostaBtn.style = 'background-color: red; margin-left: 2%; cursor:pointer; color:white; margin-bottom: 5%;'
+    verificarRespostaBtn.onclick = verificarResposta;
+    document.querySelector('.asarestas').appendChild(verificarRespostaBtn);
+
+    // Função para verificar a resposta do jogador
+    function verificarResposta() {
+        console.log(arestasSelecionadas.length)
+        if (arestasSelecionadas.length === 9) {
+            const respostaJogador = somaArestasInput.value;
+
+            // Verifique se a resposta do jogador está correta (substitua 'respostaCorreta' pelo valor correto)
+            const respostaCorreta = 105; // Substitua pelo valor correto
+
+            if (parseInt(respostaJogador) === respostaCorreta) {
+                alert('Parabéns! Você encontrou o mapa de Kruskal. Vá para a página do tesouro.');
+                // Redirecione para a página do tesouro (substitua '/pagina_do_tesouro' pela URL correta)
+                window.location.href = '/pagina_do_tesouro';
+            } else {
+                alert('A resposta está incorreta. Tente novamente.');
             }
-            return find(parent.get(x));
+        } else{
+                alert('Você não selecionou o número de arestas suficientes para MST!');
         }
-
-        for (const vertex of selectedArestas) {
-            const { start, end } = vertex;
-            const rootStart = find(start);
-            const rootEnd = find(end);
-
-            if (rootStart === rootEnd) {
-                return true; // Formou um ciclo
-            }
-
-            parent.set(rootStart, rootEnd);
-        }
-
-        return false;
     }
+
+
 </script>
-</body>
-</html>
+<style>
+    .aaresta:hover {
+        background-color: red;
+        border: 1px solid blue;
+    }
+
+    .aaresta {
+        position: absolute;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .edge {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 5px; /* Largura da aresta */
+        background-color: deeppink; /* Cor da aresta */
+        color: white;
+        transform-origin: 0 50%;
+    }
+</style>
 </body>
 
 </html>

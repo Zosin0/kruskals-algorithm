@@ -37,7 +37,23 @@ def p5():
 def jogo1():
     return render_template('jogo1.html')
 
+def calcular_mst():
+    # Criar um grafo usando NetworkX
+    G = nx.Graph()
 
+    # Adicionar as arestas selecionadas ao grafo
+    for aresta in arestas_selecionadas:
+        start, end, weight = aresta.split('-')
+        G.add_edge(start, end, weight=int(weight))
+
+    # Calcular a MST
+    mst = nx.minimum_spanning_tree(G)
+
+    return mst
+
+@app.route('/pagina_do_tesouro')
+def tesouro():
+    return render_template('pagina_do_tesouro.html')
 
 
 @app.route('/jogo', methods=['GET', 'POST'])
@@ -60,7 +76,6 @@ def passo2():
     cache.set('selected_points', selected_points)
 
     return render_template('passo2.html', pontos=selected_points)
-
 
 def formatar_estilo(estilo):
     estilo_formatado = ''
