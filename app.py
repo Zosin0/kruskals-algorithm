@@ -1,38 +1,52 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_caching import Cache
 from networkx.algorithms import find_cycle
+import networkx as nx
 import json
 import math
 import gzip
-
 
 app = Flask(__name__)
 app.config['CACHE_TYPE'] = 'simple'
 cache = Cache(app)
 
+
 def calcular_angulo(ponto1, ponto2):
     return math.degrees(math.atan2(ponto2['y'] - ponto1['y'], ponto2['x'] - ponto1['x']))
 
+
+#  INICIO -> Entendendo Conceitos e Passos #
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
+
 @app.route('/1')
 def p1():
     return render_template('1.html')
+
+
 @app.route('/2')
 def p2():
     return render_template('2.html')
+
+
 @app.route('/3')
 def p3():
     return render_template('3.html')
+
+
 @app.route('/4')
 def p4():
     return render_template('4.html')
+
+
 @app.route('/5')
 def p5():
     return render_template('5.html')
+
+
 @app.route('/jogar')
 def jogo1():
     return render_template('jogo1.html')
@@ -41,6 +55,7 @@ def calcular_mst():
     # Criar um grafo usando NetworkX
     G = nx.Graph()
 
+<<<<<<< Updated upstream
     # Adicionar as arestas selecionadas ao grafo
     for aresta in arestas_selecionadas:
         start, end, weight = aresta.split('-')
@@ -54,12 +69,53 @@ def calcular_mst():
 @app.route('/pagina_do_tesouro')
 def tesouro():
     return render_template('pagina_do_tesouro.html')
+=======
+#  FIM -> Entendendo Conceitos e Passos #
+>>>>>>> Stashed changes
 
-
+#  INICIO -> Entendendo o Algoritmo #
 @app.route('/jogo', methods=['GET', 'POST'])
 def index():
     return render_template('jogo.html')
 
+
+@app.route('/resultado', methods=['POST'])
+def resultado():
+    selected_edges_json = request.form.get('selectedEdges')
+    arestas_s = json.loads(selected_edges_json)
+    cache.set('arestas_s', arestas_s)
+
+    if selected_edges_json:
+        selected_edges = json.loads(selected_edges_json)
+        G = nx.DiGraph()
+
+        for edge in selected_edges:
+            name = edge['name']
+            weight = edge['weight']
+            G.add_edge(name[0], name[1], weight=int(weight))
+            print()
+            print(G)
+
+        mst = nx.minimum_spanning_tree(G.to_undirected())
+        mst_edges = []
+
+        for edge in mst.edges(data=True):
+            name = f"{edge[0]}{edge[1]}"
+            weight = edge[2]['weight']
+            mst_edges.append({'name': name, 'weight': weight})
+            print(mst_edges)
+
+        mst_edges.sort(key=lambda x: x['weight'])
+
+        if len(mst_edges) != 4:
+            return '<h1>O numero de arestas selecionado não é suficiente, selecione todas!</h1>'
+        return render_template('resultado.html', mst_edges=mst_edges)
+
+    else:
+        return "Nenhuma aresta selecionada."
+
+
+#  FIM -> Entendendo o Algoritmo #
 
 @app.route('/passo1')
 def passo1():
@@ -123,8 +179,6 @@ def find_longest_path(graph, start):
     return longest_path
 
 
-import networkx as nx
-
 @app.route('/passo4', methods=['POST'])
 def passo4():
     selected_edges_json = request.form.get('selectedEdges')
@@ -184,62 +238,6 @@ def passo4():
 
     else:
         return render_template('passo4_no_selection.html')
-
-@app.route('/resultado', methods=['POST'])
-def resultado():
-    selected_edges_json = request.form.get('selectedEdges')
-    arestas_s = json.loads(selected_edges_json)
-    cache.set('arestas_s', arestas_s)
-
-    if selected_edges_json:
-        selected_edges = json.loads(selected_edges_json)
-        G = nx.DiGraph()
-        for edge in selected_edges:
-            print(edge)
-            name = edge['name']
-            weight = edge['weight']
-            G.add_edge(name[0], name[1], weight=int(weight))
-
-        mst = nx.minimum_spanning_tree(G.to_undirected())
-
-        mst_edges = []
-        for edge in mst.edges(data=True):
-            name = f"{edge[0]}{edge[1]}"
-            weight = edge[2]['weight']
-            mst_edges.append({'name': name, 'weight': weight})
-            print(mst_edges)
-
-        mst_edges.sort(key=lambda x: x['weight'])
-
-        def has_cycle(graph, edge):
-            return nx.has_path(graph, edge['name'][1], edge['name'][0])
-
-        if len(mst_edges) != 4:
-            return '<h1>O mestre Kruskal não conseguiu encontrar o tesouro, tente novamente</h1>'
-        return render_template('resultado.html', mst_edges=mst_edges)
-
-    else:
-        return "Nenhuma aresta selecionada."
-
-@app.route('/ciclos')
-def draw_cycles():
-    selected_edges_json = cache.get('arestas_s')
-
-    if selected_edges_json:
-        selected_edges = selected_edges_json
-        G = nx.DiGraph()
-        for edge in selected_edges:
-            name = edge['name']
-            weight = edge['weight']
-            G.add_edge(name[0], name[1], weight=int(weight))
-
-        # Use networkx para encontrar os ciclos no grafo
-        cycles = list(nx.simple_cycles(G))
-
-        # Renderize a página HTML para exibir os ciclos
-        return render_template('ciclos.html', cycles=cycles)
-    else:
-        return "Nenhuma aresta selecionada."
 
 
 if __name__ == '__main__':
