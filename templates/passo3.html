@@ -11,14 +11,16 @@
 <main>
     <form id="gerarMST" method="POST" action="/passo4">
         <div class="passo3">
-            <h2 id="txt-mp">Você conseguiu montar o mapa!<br> Selecione os caminhos pela sua distância em ordem
+            <h2 id="txt-mp">Você conseguiu montar o mapa!<br>
+                Selecione os caminhos pela sua distância em ordem
                 crescente:
             </h2>
             <div id="map-container" style="position: relative; border: solid 10px brown;">
                 <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
 
                 {% for aresta in arestas %}
-                    <div id="edge" class="line3" style="{{ aresta.style | safe }} left: {{ aresta.ponto1.x }}px; top: {{ aresta.ponto1.y }}px;"
+                    <div id="edge" class="line3"
+                         style="{{ aresta.style | safe }} left: {{ aresta.ponto1.x }}px; top: {{ aresta.ponto1.y + 30}}px;"
                          data-weight='{{ aresta.distancia }}' data-name='{{ aresta.nome }}'>
                         <p> {{ aresta.distancia }}km </p>
                         <button hidden type="input" value='{{ aresta.distancia }}' id="{{ aresta.nome }}"
@@ -31,7 +33,7 @@
             {% endfor %}
 
             <button class="enigma" type="submit" onclick="sendSelectedEdges();">
-                Econtrar seu caminho!
+                Entender o Algoritmo!
             </button>
         </div>
     </form>

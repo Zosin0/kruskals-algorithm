@@ -8,45 +8,45 @@
 </head>
 
 <body class="body1">
-    <main>
-        <div class="passo1">
-            <h2 id="txt-mp">Agora vamos selecionar as cidades (vertices)<br>
-                Selecione os pontos destacados para marcar uma cidade,
-                selecione todas as cidades destacadas no mapa</h2>
+<main>
+    <div class="passo1">
+        <h2 id="txt-mp">Agora vamos selecionar as cidades (vertices)<br>
+            Selecione os pontos destacados para marcar uma cidade,
+            selecione todas as cidades destacadas no mapa</h2>
 
-                <div id="map" style="border: solid 10px brown;">
-                    <img style="width: 450px; height: 450px; margin-top: 0.6px" src="/static/assets/mapa.png">
-                </div>
-                <form id="points-form" action="/passo2" method="POST">
-                    <input type="hidden" id="points-data" name="points" value="">
-                    <input class="sel-points" type="submit" value="Selecionar pontos">
-                </form>
+        <div id="map" style="border: solid 10px brown;">
+            <img style="width: 450px; height: 450px; margin-top: 0.6px" src="/static/assets/transp.png">
         </div>
-    </main>
-    <script>
-        var selectedPoints = [];
-        var map = document.getElementById('map');
-        var pointCounter = 1; // Variável para rastrear o número do ponto
+        <form id="points-form" action="/passo2" method="POST">
+            <input type="hidden" id="points-data" name="points" value="">
+            <input class="sel-points" type="submit" value="Selecionar pontos">
+        </form>
+    </div>
+</main>
+<script>
+    var selectedPoints = [];
+    var map = document.getElementById('map');
+    var pointCounter = 1; // Variável para rastrear o número do ponto
 
-        map.addEventListener('click', function (event) {
-            var x = event.clientX - 15;
-            var y = event.clientY - 15;
+    map.addEventListener('click', function (event) {
+        var x = event.clientX - 15;
+        var y = event.clientY - 15;
 
-            selectedPoints.push({ x: x, y: y, pointCounter: pointCounter });
+        selectedPoints.push({x: x, y: y, pointCounter: pointCounter});
 
-            document.getElementById('points-data').value = JSON.stringify(selectedPoints);
+        document.getElementById('points-data').value = JSON.stringify(selectedPoints);
 
-            var pointDiv = document.createElement('div');
-            pointDiv.className = 'point';
-            pointDiv.style.left = x + 'px';
-            pointDiv.style.top = y + 'px';
-            pointDiv.textContent = pointCounter; // Exibe o número do ponto
-            map.appendChild(pointDiv);
+        var pointDiv = document.createElement('div');
+        pointDiv.className = 'point';
+        pointDiv.style.left = x + 'px';
+        pointDiv.style.top = y + 'px';
+        pointDiv.textContent = pointCounter; // Exibe o número do ponto
+        map.appendChild(pointDiv);
 
-            pointCounter++; // Incrementa o número do ponto para o próximo
-        });
-        
-    </script>
+        pointCounter++; // Incrementa o número do ponto para o próximo
+    });
+
+</script>
 </body>
 
 </html>

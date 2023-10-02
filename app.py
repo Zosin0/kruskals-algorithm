@@ -11,12 +11,7 @@ app.config['CACHE_TYPE'] = 'simple'
 cache = Cache(app)
 
 
-def calcular_angulo(ponto1, ponto2):
-    return math.degrees(math.atan2(ponto2['y'] - ponto1['y'], ponto2['x'] - ponto1['x']))
-
-
 #  INICIO -> Entendendo Conceitos e Passos #
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -51,27 +46,13 @@ def p5():
 def jogo1():
     return render_template('jogo1.html')
 
-def calcular_mst():
-    # Criar um grafo usando NetworkX
-    G = nx.Graph()
-
-<<<<<<< Updated upstream
-    # Adicionar as arestas selecionadas ao grafo
-    for aresta in arestas_selecionadas:
-        start, end, weight = aresta.split('-')
-        G.add_edge(start, end, weight=int(weight))
-
-    # Calcular a MST
-    mst = nx.minimum_spanning_tree(G)
-
-    return mst
 
 @app.route('/pagina_do_tesouro')
 def tesouro():
     return render_template('pagina_do_tesouro.html')
-=======
+
+
 #  FIM -> Entendendo Conceitos e Passos #
->>>>>>> Stashed changes
 
 #  INICIO -> Entendendo o Algoritmo #
 @app.route('/jogo', methods=['GET', 'POST'])
@@ -133,6 +114,7 @@ def passo2():
 
     return render_template('passo2.html', pontos=selected_points)
 
+
 def formatar_estilo(estilo):
     estilo_formatado = ''
     for propriedade in estilo:
@@ -159,10 +141,12 @@ def passo3():
 
     return render_template('passo3.html', pontos=selected_points, arestas=arestas)
 
+def calcular_angulo(ponto1, ponto2):
+    return math.degrees(math.atan2(ponto2['y'] - ponto1['y'], ponto2['x'] - ponto1['x']))
+
 
 def has_cycle(graph, edge):
     return nx.has_path(graph, edge['name'][1], edge['name'][0])
-
 
 def find_longest_path(graph, start):
     def dfs(node, path):
@@ -177,9 +161,7 @@ def find_longest_path(graph, start):
     longest_path = []
     dfs(start, [])
     return longest_path
-
-
-@app.route('/passo4', methods=['POST'])
+@app.route('/passo4', methods=['POST', 'GET'])
 def passo4():
     selected_edges_json = request.form.get('selectedEdges')
     pontos = cache.get('selected_points')
@@ -207,37 +189,67 @@ def passo4():
             estilo = edge['estilo']
             G.add_edge(name[0], name[1], weight=weight, estilo=estilo)
 
-            # Verifique se a adição da aresta gera um ciclo
-            if find_cycle(G, orientation='ignore'):
-                # Se gerar ciclo, adicione à lista de ciclos
-                cycle_edges.append(edge)
-                # Remova a aresta para evitar ciclos na MST
-                G.remove_edge(name[0], name[1])
-            else:
-                # Se não gerar ciclo, adicione à MST
+        # Inicialize um conjunto para rastrear os vértices visitados
+        visited = set()
+
+        # Função para percorrer o grafo em busca de ciclos
+        def dfs(v, parent):
+            visited.add(v)
+            for neighbor in G.neighbors(v):
+                if neighbor not in visited:
+                    if dfs(neighbor, v):
+                        return True
+                elif neighbor != parent:
+                    return True
+            return False
+
+        # Verifique se a adição da aresta gera um ciclo
+        for edge in selected_edges:
+            name = edge['name']
+            if not dfs(name[0], None):
+                # Se não gerar ciclo, adicione à lista de possíveis arestas da MST
                 mst_edges.append(edge)
 
-        # Verifique se o grafo é desconexo (mais de uma árvore)
+        # Ordenar as arestas da MST por peso
+        mst_edges = sorted(mst_edges, key=lambda edge: float(edge['weight']))
+
+        # Verifica se o grafo é desconexo (mais de uma árvore)
         num_trees = len(list(nx.connected_components(G)))
         if num_trees > 1:
             tree_type = 'floresta'  # Mais de uma árvore
         else:
             tree_type = 'árvore única'
 
-        print(mst_edges)
-        print(cycle_edges)
-        print(tree_type)
+        # Calcule o caminho mais longo possível (você pode implementar isso posteriormente)
 
+        # Inicialize o caminho mais longo como vazio por enquanto
+        longest_path = []
+
+        print(f"MST: {mst_edges}")
+        print(f"Ciclos: {cycle_edges}")
+        print(f"Tipo de Arvore: {tree_type}")
+        print(f"Vertices: {pontos}")
+        print(f"Caminho Mais Longo: {longest_path}")
+
+        # Renderize a página passo4.html com as informações
         return render_template(
             'passo4.html',
             mst_edges=mst_edges,
             cycle_edges=cycle_edges,
             tree_type=tree_type,
+            longest_path=longest_path,
             pontos=pontos
         )
 
     else:
-        return render_template('passo4_no_selection.html')
+        return '<h1></h1>'
+
+
+
+#  FIM -> Entendendo o Algoritmo #
+
+
+
 
 
 if __name__ == '__main__':

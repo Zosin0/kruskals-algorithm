@@ -8,55 +8,45 @@
 </head>
 
 <body class="body1">
-    <main>
-        <h2 id="txt-mp">Você conseguiu montar o mapa!<br> Selecione os caminhos pela sua distância em ordem
-                crescente:
-        </h2>
-        <div class="passo3">
-            <div id="mst-container" style="position: relative; border: solid 10px brown;">
-                <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
-                {% for aresta in mst_edges %}
-                <div class="line3" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
-                    <p>{{ aresta.weight }}km</p>
-                </div>
-                {% endfor %}
-            </div>
-            {% for ponto in pontos %}
-                <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;">{{ ponto.pointCounter }}</div>
-            {% endfor %}
+<main>
+    <div class="quadrado">
+        <div class="mylines">
+            <div class="myline"></div>
         </div>
-
-            <h2 id="txt-mp">Caminho Mais Longo</h2>
-            <div class="passo3">
-                <div id="longest-path-container" style="position: relative; border: solid 10px brown;">
-                    <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
-                    {% for aresta in longest_path_edges %}
-                    <div class="line3" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
-                        <p>{{ aresta.weight }}km</p>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% for ponto in pontos %}
-                    <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;">{{ ponto.pointCounter }}</div>
-                {% endfor %}
-            </div>
-
-            <h2 id="txt-mp">Ciclos Evitados</h2>
-            <div class="passo3">
-                <div id="cycle-container" style="position: relative; border: solid 10px brown;">
-                    <img id="map" style="width: 450px; height: 450px;" src="/static/assets/transp.png">
-                    {% for aresta in cycle_edges %}
-                    <div class="line3" style="{{ aresta.estilo }}" data-name='{{ aresta.name }}'>
-                        <p>{{ aresta.weight }}km</p>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% for ponto in pontos %}
-                    <div class="point" style="left: {{ ponto.x }}px; top: {{ ponto.y }}px;">{{ ponto.pointCounter }}</div>
-                {% endfor %}
-            </div>
-
-    </main>
+        <div class="mycircles">
+            <div class="mycircle"></div>
+        </div>
+    </div>
+</main>
 </body>
+<style>
+    .myline {
+        background-color: #6d0b00;
+        height: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .mylines, .mycircles {
+        position: absolute;
+    }
+
+    .mycircle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bolder;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        background-color: deepskyblue;
+        color: red;
+        border-radius: 50%;
+        position: relative;
+    }
+</style>
+
 
 </html>
