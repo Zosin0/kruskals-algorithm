@@ -6,28 +6,24 @@
 
 <body class="body1">
 <div class="passo3">
-    <h1>Esse é o caminho de kruskal, clique para saber como chegamos aqui</h1>
+    {% for edge in mst_edges %}
+        <div class="line1 {{ edge.name }}">{{ edge.weight }}</div>
+    {% endfor %}
 
-        {% for edge in mst_edges %}
-            <div class="line1 {{ edge.name }}"></div>
-        {% endfor %}
-        <section class="circulos">
-            <div class="circle" style="left: 704px; top: 50px;">A</div>
-            <div class="circle" style="left: 566px; top: 180px;">B</div>
-            <div class="circle" style="left: 842px; top: 180px;">C</div>
-            <div class="circle" style="left: 625px; top: 350px;">D</div>
-            <div class="circle" style="left: 785px; top: 350px;">E</div>
-        </section>
+    <section class="circulos">
+        <div class="circle" style="left: 704px; top: 50px;">A</div>
+        <div class="circle" style="left: 566px; top: 180px;">B</div>
+        <div class="circle" style="left: 842px; top: 180px;">C</div>
+        <div class="circle" style="left: 625px; top: 350px;">D</div>
+        <div class="circle" style="left: 785px; top: 350px;">E</div>
+    </section>
 
-    <div style="margin-top: 20%; color: red; font-size: 23px; text-align: center" >
-        <a href="ciclos">Ciclos Gerados</a><br><br>
-        <a href="saiba-mais.html">Exemplos de cidades desconectadas (grafo desconexo)<a><br><br>
-        <a href="caminho-mais-longo.html">Caminho mais longo<a><br><br>
+    <div style="margin-top: 25%; color: red; font-size: 23px; text-align: center">
+        <h1>Essa é a nossa Árvore Geradora Mínima!<br>
+            Vamos estudar os passos?
+        </h1>
     </div>
-
-
-
-
+</div>
 
 </body>
 <script>
